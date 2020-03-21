@@ -12,21 +12,21 @@ const uncheckedCountSpan = document.getElementById('unchecked-count')
 function newTodo() {
   itemCountSpan.innerHTML++;
   uncheckedCountSpan.innerHTML++;
-  let node = document.createElement("LI");
-  let delete = document.createElement("")
+  let listItem = document.createElement("li");
 
-  let todoTextInput = document.createElement("INPUT");
+  let todoTextInput = document.createElement("input");
 
-  let checkbox = document.createElement("INPUT");
+  let checkbox = document.createElement("input");
   checkbox.setAttribute("type", "checkbox");
   checkbox.setAttribute("onchange", "checkTodo(this)");
 
   checkbox.setAttribute("class", classNames.TODO_CHECKBOX);
   todoTextInput.setAttribute("class", classNames.TODO_TEXT);
-  node.appendChild(todoTextInput);
-  node.appendChild(checkbox);
-  node.setAttribute("class", classNames.TODO_ITEM);
-  list.appendChild(node); 
+  
+  listItem.appendChild(todoTextInput);
+  listItem.appendChild(checkbox);
+  listItem.setAttribute("class", classNames.TODO_ITEM);
+  list.appendChild(listItem); 
 }
 
 function checkTodo(checkbox) {
