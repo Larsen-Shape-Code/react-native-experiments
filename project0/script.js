@@ -19,9 +19,10 @@ function newTodo() {
   let deleteButton = document.createElement("button");
 
   checkbox.setAttribute("type", "checkbox");
-  checkbox.setAttribute("onchange", "checkTodo(this)");
+  checkbox.setAttribute("onchange", "checkTodo(this.checked)");
   checkbox.setAttribute("class", classNames.TODO_CHECKBOX);
   deleteButton.setAttribute("onclick", "deleteTodo(this.parentNode.id)");
+  deleteButton.setAttribute("class", classNames.TODO_DELETE)
   deleteButton.innerHTML = "Delete";
 
   todoTextInput.setAttribute("class", classNames.TODO_TEXT);
@@ -35,12 +36,14 @@ function newTodo() {
 }
 
 function checkTodo(checkbox) {
-  return (checkbox.checked ? uncheckedCountSpan.innerHTML-- : uncheckedCountSpan.innerHTML++);
+  return (checkbox ? uncheckedCountSpan.innerHTML-- : uncheckedCountSpan.innerHTML++);
 }
 
 function deleteTodo(parentId) {
   itemCountSpan.innerHTML--;
-  uncheckedCountSpan.innerHTML--;
   let itemToDelete = document.getElementById(parentId);
+  if (!itemToDelete.children[1].checked) {
+    uncheckedCountSpan.innerHTML--;
+  }
   itemToDelete.remove();
 }
